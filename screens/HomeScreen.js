@@ -14,8 +14,6 @@ import { SearchBar, Header } from 'react-native-elements';
 import MapView from 'react-native-maps';
 import '@expo/vector-icons';
 
-const imageName = require("../assets/images/marker-green.png");
-
 
 export default class HomeScreen extends React.Component {
     constructor(props) {
@@ -27,18 +25,43 @@ export default class HomeScreen extends React.Component {
             error: null,
             search: '',
             marker: [
-            {
-                latlng: { latitude: 17.4254934, longitude: 78.448774 },
-                title: 'dawdaw',
-                description: 'sdad',
-                type:'shop'
-            },
-            {
-                latlng: { latitude: 17.67, longitude: 78.24 },
-                title: 'dawvvccxdaw',
-                description: 'sasd',
-                type:'driving'
-            }
+                {
+                    latlng: { latitude: 17.4254934, longitude: 78.448774 },
+                    title: 'dawdaw',
+                    description: 'sdad',
+                    imgSrc: require('../assets/images/map-eye.png')
+                },
+                {
+                    latlng: { latitude: 17.47, longitude: 78.34 },
+                    title: 'dawvvccxdaw',
+                    description: 'sasd',
+                    imgSrc: require('../assets/images/map-home.png')
+                },
+                {
+                    latlng: { latitude: 17.54254934, longitude: 78.4448774 },
+                    title: 'dawdaw',
+                    description: 'sdad',
+                    imgSrc: require('../assets/images/map-like.png')
+
+                },
+                {
+                    latlng: { latitude: 17.437, longitude: 78.434 },
+                    title: 'dawvvccxdaw',
+                    description: 'sasd',
+                    imgSrc: require('../assets/images/map-camera.png')
+                },
+                {
+                    latlng: { latitude: 17.3347, longitude: 78.3334 },
+                    title: 'dawvvccxdaw',
+                    description: 'sasd',
+                    imgSrc: require('../assets/images/map-home.png')
+                },
+                {
+                    latlng: { latitude: 17.4934, longitude: 78.48774 },
+                    title: 'dawdaw',
+                    description: 'sdad',
+                    imgSrc: require('../assets/images/map-eye.png')
+                }
             ]
 
         };
@@ -50,21 +73,17 @@ export default class HomeScreen extends React.Component {
     };
 
     static navigationOptions = {
-        header: null
-        // title: null,
-        // headerStyle: {
-        //     backgroundColor: 'transparent'
-        // },  
-        // header: (
-        //   <SearchBar lightTheme
-        // //   inputStyle={{backgroundColor: 'white'}}
-        //   containerStyle={{ borderWidth: 0, borderRadius: 5, marginLeft:10, marginRight:10, marginTop: 30}}
-        //   placeholder="Enter the text"
+        title: null,
+        header: (
+          <SearchBar lightTheme
+        //   inputStyle={{backgroundColor: 'white'}}
+          containerStyle={{ borderWidth: 0, borderRadius: 5, marginLeft:10, marginRight:10, marginTop: 30, marginBottom: 10}}
+          placeholder="Search"
 
-        // //   icon={{ type: 'font-awesome', name: 'search' }}
-        // //   placeholderTextColor={'#333333'}
-        //   onChangeText={this.updateSearch}/>
-        // ), 
+        //   icon={{ type: 'font-awesome', name: 'search' }}
+        //   placeholderTextColor={'#333333'}
+          onChangeText={this.updateSearch}/>
+        ), 
     };
 
     componentDidMount() {
@@ -94,19 +113,19 @@ export default class HomeScreen extends React.Component {
                     }}
                     showsUserLocation={true}
                 >
-                  {this.state.marker.map(marker => (
-                    <MapView.Marker
-                        coordinate={marker.latlng}
-                        title={marker.title}
-                        description={marker.description}
-                    >
-                    if(marker.type=="driving") {
-                    <Image
-                    source={require('../assets/images/marker-green.png')}
-                     />
-                    }
-                    </MapView.Marker>
-                  ))}
+                    {this.state.marker.map(marker => (
+                        <MapView.Marker
+                            coordinate={marker.latlng}
+                            title={marker.title}
+                            description={marker.description}
+                        >
+
+                            <Image style={{ height: 40, width: 40 }}
+                                source={marker.imgSrc}
+                            />
+
+                        </MapView.Marker>
+                    ))}
                 </MapView>
             </View>
         );
